@@ -30,7 +30,7 @@ Wait 20 seconds → Check "Groceries" note
 
 ### 3. Via URL (Recipe Website)
 ```bash
-curl -X POST http://localhost:8899/capture/url \
+curl -X POST http://localhost:8898/capture/url \
   -H "Content-Type: application/json" \
   -d '{"url": "https://www.example.com/recipe"}'
 ```
@@ -39,7 +39,7 @@ Check "Groceries" note immediately
 ## Check Status
 
 ```bash
-curl http://localhost:8899/health
+curl http://localhost:8898/health
 ```
 
 ## View Logs

@@ -22,7 +22,7 @@
 │      → Detected by orchestrator (20s polling)                                    │
 │                                                                                  │
 │  3. 🌐  URL CAPTURE (Web Recipes)                                               │
-│      POST http://localhost:8899/capture/url                                      │
+│      POST http://localhost:8898/capture/url                                      │
 │      → Fetches web page                                                          │
 │      → Extracts readable text                                                    │
 │      → Processes immediately                                                     │
@@ -165,12 +165,12 @@
 │    Check Apple Notes → "To Buy" → "Groceries"                                   │
 │                                                                                  │
 │  URL CAPTURE:                                                                    │
-│    curl -X POST http://localhost:8899/capture/url \                             │
+│    curl -X POST http://localhost:8898/capture/url \                             │
 │      -H "Content-Type: application/json" \                                      │
 │      -d '{"url": "https://example.com/recipe"}'                                 │
 │                                                                                  │
 │  HEALTH CHECK:                                                                   │
-│    curl http://localhost:8899/health                                             │
+│    curl http://localhost:8898/health                                             │
 │                                                                                  │
 │  STOP:                                                                           │
 │    Ctrl+C in terminal                                                            │
@@ -188,7 +188,7 @@
 │  ✅ Integration:       Reminders, Notes (osascript)                              │
 │  ✅ Database:          SQLite (nodes, edges)                                     │
 │  ✅ Logging:           JSONL interaction logs                                    │
-│  ✅ Endpoint:          http://localhost:8899                                     │
+│  ✅ Endpoint:          http://localhost:8898                                     │
 │                                                                                  │
 └─────────────────────────────────────────────────────────────────────────────────┘
 

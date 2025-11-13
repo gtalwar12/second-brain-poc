@@ -72,7 +72,7 @@ You should see:
    Polling every 20s
    Watching Reminders and Notes...
 
-🌐 Starting URL capture endpoint on http://localhost:8899
+🌐 Starting URL capture endpoint on http://localhost:8898
    POST /capture/url with {'url': '...'}
    GET /health for status
 ```
@@ -137,7 +137,7 @@ Produce
 1. Find a recipe URL (e.g., from AllRecipes, NYT Cooking, etc.)
 2. Send a POST request:
    ```bash
-   curl -X POST http://localhost:8899/capture/url \
+   curl -X POST http://localhost:8898/capture/url \
      -H "Content-Type: application/json" \
      -d '{"url": "https://example.com/recipe-url"}'
    ```
@@ -148,7 +148,7 @@ Produce
 ### Check health status
 
 ```bash
-curl http://localhost:8899/health
+curl http://localhost:8898/health
 ```
 
 Returns:

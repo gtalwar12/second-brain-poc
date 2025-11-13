@@ -269,7 +269,7 @@ class Orchestrator:
             # Sleep before next poll
             time.sleep(self.poll_interval)
 
-    def start(self, port: int = 8899):
+    def start(self, port: int = 8898):
         """Start the orchestrator service."""
         self.running = True
 
