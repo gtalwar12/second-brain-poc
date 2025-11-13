@@ -132,12 +132,10 @@ class ActionExecutor:
             # Section header
             html_parts.append(f'<h2>{section_name}</h2>')
 
-            # Checklist items
-            html_parts.append('<ul>')
+            # Checklist items (en-todo creates checkboxes, no ul/li needed)
             for item in items:
                 item_text = item.get('text', '')
-                html_parts.append(f'<li><div><en-todo/>{item_text}</div></li>')
-            html_parts.append('</ul>')
+                html_parts.append(f'<div><en-todo/>{item_text}</div>')
             html_parts.append('<br>')
 
         html_parts.append('</div>')

@@ -79,53 +79,28 @@ class RemindersIntegration:
     @staticmethod
     def _parse_applescript_list(output: str) -> List[Dict]:
         """Parse AppleScript list output into Python dicts."""
-        # AppleScript returns lists as: {{id, name, body, completed, listName}, ...}
-        # This is a simplified parser
+        # AppleScript returns comma-separated values:
+        # id, name, body, completed, listName, id, name, body, completed, listName, ...
         reminders = []
 
-        # Remove outer braces
-        if output.startswith('{') and output.endswith('}'):
-            output = output[1:-1]
-
-        if not output:
+        if not output or output.strip() == "":
             return []
 
-        # Split by }, { pattern
-        items = []
-        current = []
-        depth = 0
-        current_str = ""
+        # Split by comma
+        parts = [p.strip() for p in output.split(',')]
 
-        for char in output:
-            if char == '{':
-                depth += 1
-                if depth > 1:
-                    current_str += char
-            elif char == '}':
-                depth -= 1
-                if depth > 0:
-                    current_str += char
-                elif depth == 0 and current_str:
-                    items.append(current_str)
-                    current_str = ""
-            elif char == ',' and depth == 0:
-                continue
-            else:
-                if depth > 0:
-                    current_str += char
-
-        # Parse each item
-        for item in items:
-            parts = [p.strip() for p in item.split(',')]
-            if len(parts) >= 4:
-                reminder = {
-                    'id': parts[0].strip('"'),
-                    'name': parts[1].strip('"'),
-                    'body': parts[2].strip('"') if parts[2] != 'missing value' else '',
-                    'completed': parts[3] == 'true',
-                    'list_name': parts[4].strip('"') if len(parts) > 4 else 'Unknown'
-                }
-                reminders.append(reminder)
+        # Group into sets of 5 (id, name, body, completed, listName)
+        i = 0
+        while i + 4 < len(parts):
+            reminder = {
+                'id': parts[i].strip(),
+                'name': parts[i+1].strip(),
+                'body': parts[i+2].strip() if parts[i+2].strip() != 'missing value' else '',
+                'completed': parts[i+3].strip() == 'true',
+                'list_name': parts[i+4].strip()
+            }
+            reminders.append(reminder)
+            i += 5
 
         return reminders
 

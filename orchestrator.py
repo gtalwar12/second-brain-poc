@@ -44,7 +44,7 @@ class InteractionLogger:
 class Orchestrator:
     """Main orchestrator service."""
 
-    def __init__(self, poll_interval: int = 20):
+    def __init__(self, poll_interval: int = 10):
         self.poll_interval = poll_interval
         self.kg = KnowledgeGraph()
         self.brain = BrainClient()
@@ -291,7 +291,7 @@ class Orchestrator:
 
 def main():
     """Main entry point."""
-    orchestrator = Orchestrator(poll_interval=20)
+    orchestrator = Orchestrator(poll_interval=10)
 
     try:
         orchestrator.start(port=8898)
