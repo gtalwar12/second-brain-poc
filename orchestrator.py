@@ -294,7 +294,7 @@ def main():
     orchestrator = Orchestrator(poll_interval=20)
 
     try:
-        orchestrator.start(port=8899)
+        orchestrator.start(port=8898)
     except KeyboardInterrupt:
         print("\n\n⏸️  Shutting down...")
         orchestrator.stop()
